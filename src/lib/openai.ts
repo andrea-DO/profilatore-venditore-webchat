@@ -7,7 +7,7 @@ let openaiClient: OpenAI | null = null;
 function getOpenAIClient(): OpenAI {
   if (!openaiClient) {
     openaiClient = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: process.env.OPENAI_API_KEY?.trim(),
     });
   }
   return openaiClient;
@@ -32,10 +32,10 @@ export async function generateInterviewQuestion(
   ];
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-4o-mini',
+    model: 'gpt-5-mini',
     messages: chatMessages,
     temperature: 0.7,
-    max_tokens: 500,
+    max_completion_tokens: 500,
   });
 
   const content = response.choices[0]?.message?.content || '';
