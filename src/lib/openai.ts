@@ -34,7 +34,6 @@ export async function generateInterviewQuestion(
   const response = await openai.chat.completions.create({
     model: 'gpt-5-mini',
     messages: chatMessages,
-    temperature: 0.7,
     max_completion_tokens: 500,
   });
 
